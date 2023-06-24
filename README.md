@@ -1,4 +1,6 @@
 # MongoDB_ReactNative_Authentication
+
+<div style="text-align:center"><img src="https://imgur.com/a/r3urqZ8" width="320" height="700" style="display: block; margin: 0 auto" ><br/>
 A authentication app made on react-native , mongodb and express to signup and login user with email and password (Google signin underway)</br>
 To run Clone this repo :
 ```
