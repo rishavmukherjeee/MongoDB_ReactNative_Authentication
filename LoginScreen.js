@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet,TouchableOpacity,Text } from 'react-native';
 import axios from 'axios';
-import {BASE_URL} from '@env';
+import {BASE_URL,GOOGLE_CLIENT_ID} from '@env';
+import { GoogleSignin, statusCodes } from 'react-native-google-signin';
+import jwtDecode from 'jwt-decode';
+
+
+
+// Use the Google sign-in function in your component
+
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,7 +27,29 @@ const LoginScreen = ({ navigation }) => {
   const handleSignup = () => {
     navigation.navigate('Signup');
   };
-
+  // Initialize Google sign-in in your component
+const initGoogleSignIn = async () => {
+  try {
+    await GoogleSignin.hasPlayServices();
+    await GoogleSignin.signIn();
+    const { idToken } = await GoogleSignin.getTokens();
+    // Send idToken to the backend for verification and authentication
+    const response = await axios.post('http://localhost:3000/auth/google', { idToken });
+    const { token } = response.data;
+    const decodedToken = jwtDecode(token);
+    // Handle authentication success and store the token
+  } catch (error) {
+    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      // Handle sign-in cancellation
+    } else if (error.code === statusCodes.IN_PROGRESS) {
+      // Handle ongoing sign-in process
+    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      // Handle Play Services not available
+    } else {
+      // Handle other errors
+    }
+  }
+};
   return (
     <View style={styles.container}>
       <TextInput
@@ -39,7 +68,10 @@ const LoginScreen = ({ navigation }) => {
         placeholderTextColor="gray"
       />
       <Button title="Login" onPress={handleLogin} />
+      
+      <Button title="Sign In with Google" onPress={initGoogleSignIn} />
       <TouchableOpacity onPress={handleSignup}>
+
       <Text style={{ color: 'blue' ,margin:30}}>
         {"Don't have an account? Sign up here."}
       </Text>
