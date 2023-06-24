@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet,TouchableOpacity,Text } from 'react-native';
 import axios from 'axios';
-
+import {BASE_URL} from '@env';
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -9,7 +9,7 @@ const LoginScreen = ({ navigation }) => {
   const handleLogin = async () => {
     try {
       // Make an API call to your server-side endpoint for authentication
-      const response = await axios.post(`${baseUrl}/login`, { email, password });
+      const response = await axios.post(`${BASE_URL}/login`, { email, password });
       // Handle the response, e.g., save user token in AsyncStorage
       // Redirect to the home page
       navigation.navigate('Home');

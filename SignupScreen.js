@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet ,Text,TouchableOpacity} from 'react-native';
 import axios from 'axios';
-
+import {BASE_URL} from '@env';
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const baseUrl = process.env.BASE_URL;
+  
   const handleSignup = async () => {
     try {
       // Make an API call to your server-side endpoint for user registration
-      const response = await axios.post(`${baseUrl}/signup`, { email, password });
+      const response = await axios.post(`${BASE_URL}/signup`, { email, password });
       // Handle the response, e.g., save user token in AsyncStorage
       // Redirect to the home page
       navigation.navigate('Home');

@@ -1,15 +1,16 @@
-require('dotenv').config();
+
 const express = require('express');
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-
+require('dotenv').config({path: '../.env'});
+const mon=process.env.MONGO_CONNECTION_STRING;
 // Create Express app
 const app = express();
 app.use(express.json());
-console.log(process.env.MONGO_CONNECTION_STRING);
+console.log(mon);
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_CONNECTION_STRING, {
+mongoose.connect(mon, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
