@@ -16,12 +16,11 @@ ipconfig
 ```
 </br>Open the terminal and type to install the app in mobile:
 ```
-yarn install
-```
-```
+yarn install &&
 yarn start
 ```
 </br>Open the server directory and run the server
 ```
-cd server && node server.js
+cd server &&
+node server.js
 ```
