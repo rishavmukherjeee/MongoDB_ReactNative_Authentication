@@ -1,5 +1,5 @@
 # MongoDB_ReactNative_Authentication
-A authentication app made on react-native , mongodb and express</br>
+A authentication app made on react-native , mongodb and express to signup and login user with email and password (Google signin underway)</br>
 To run Clone this repo :
 ```
 git clone https://github.com/rishavmukherjeee/MongoDB_ReactNative_Authentication.git
