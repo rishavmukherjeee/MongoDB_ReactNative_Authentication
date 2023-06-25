@@ -17,6 +17,7 @@ const LoginScreen = ({ navigation }) => {
     try {
       // Make an API call to your server-side endpoint for authentication
       const response = await axios.post(`${BASE_URL}/login`, { email, password });
+      
       // Handle the response, e.g., save user token in AsyncStorage
       // Redirect to the home page
       navigation.navigate('Home');
@@ -34,10 +35,11 @@ const initGoogleSignIn = async () => {
     await GoogleSignin.signIn();
     const { idToken } = await GoogleSignin.getTokens();
     // Send idToken to the backend for verification and authentication
-    const response = await axios.post('http://localhost:3000/auth/google', { idToken });
+    const response = await axios.post(`${BASE_URL}/auth/google`, { idToken });
     const { token } = response.data;
     const decodedToken = jwtDecode(token);
     // Handle authentication success and store the token
+    navigation.navigate('Home');
   } catch (error) {
     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
       // Handle sign-in cancellation
