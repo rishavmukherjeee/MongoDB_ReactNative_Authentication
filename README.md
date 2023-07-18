@@ -1,7 +1,7 @@
 # MongoDB_ReactNative_Authentication
 
 <div style="text-align:center">
-<img src="https://imgur.com/a/r3urqZ8" width="80" height="80" style="display: block; margin: 0 auto" ><br/>
+<img src="https://i.imgur.com/E1Wd6Bv.png" width="80" height="80" style="display: block; margin: 0 auto" ><br/>
 </div>
 
 A authentication app made on react-native , mongodb and express to signup and login user with email and password (Google signin underway)</br>
