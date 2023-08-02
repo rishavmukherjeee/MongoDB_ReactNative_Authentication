@@ -1,17 +1,18 @@
-
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const app = express();
+
+// Apply CORS middleware to allow cross-origin requests
 app.use(cors());
 
-require('dotenv').config({path: '../.env'});
-const mon=process.env.MONGO_CONNECTION_STRING;
-
-const app = express();
+// Parse incoming request bodies with JSON payloads
 app.use(express.json());
-console.log(mon);
+
+require('dotenv').config({ path: '../.env' });
+const mon = process.env.MONGO_CONNECTION_STRING;
 
 mongoose.connect(mon, {
   useNewUrlParser: true,
@@ -23,7 +24,6 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('User', userSchema);
-
 
 app.post('/signup', async (req, res) => {
   const { email, password } = req.body;
